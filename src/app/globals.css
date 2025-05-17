@@ -266,3 +266,15 @@ transform: translateY(-50%) scale(0.98);
   padding: 1.5rem;
   border-radius: 0.5rem;
   }
+
+
+
+  /* footer section */
+
+
+  .footer {
+    padding: 2rem 0;
+    background: black;
+    border-top: 1px solid rgb(97, 97, 97);
+    text-align: center;
+  }
