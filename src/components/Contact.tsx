@@ -6,9 +6,9 @@ const Contact = () => {
         <div className="contact-container">
           <div className="contact-form-container glow-blue">
             <div className="contact-header">
-              <h2>Hey! Let's talk!</h2>
+              <h2>Hey! Lets talk!</h2>
               <p>Do you have a question?</p>
-              <p className="mt-4">Leave your email - I'll write you back for sure!</p>
+              <p className="mt-4">Leave your email - Ill write you back for sure!</p>
             </div>
             
             <form className="flex flex-col items-center">
