@@ -28,8 +28,7 @@ interface ProjectCardProps {
     tags: string[];
   }
   
-
-const ProjectCard = ({title, description, tags} ProjectCardProps) => (
+  const ProjectCard = ({ title, description, tags }: ProjectCardProps) => (
   <div className="project-card bg-white shadow-lg rounded-xl p-6">
     <div className="flex justify-between items-center mb-2">
       <h3 className="text-lg font-semibold">{title}</h3>
