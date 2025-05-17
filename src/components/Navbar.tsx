@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Menu, X } from 'lucide-react'
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -47,7 +48,7 @@ export default function Navbar() {
     >
       <nav className="flex items-center justify-between">
         <a href="#" className="text-xl font-bold text-blue-500" >
-          <img src="/logo.svg" alt="Portfolio Logo" className="h-10 w-auto" />
+        <Image src="/logo.png" alt="Logo" width={100} height={50} />
         </a>
 
         <button

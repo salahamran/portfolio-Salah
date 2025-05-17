@@ -22,6 +22,13 @@ const projects = [
   // Add more project objects here
 ];
 
+interface ProjectCardProps {
+    title: string;
+    description: string;
+    tags: string[];
+  }
+  
+
 const ProjectCard = ({ title, description, tags }) => (
   <div className="project-card bg-white shadow-lg rounded-xl p-6">
     <div className="flex justify-between items-center mb-2">
