@@ -41,14 +41,14 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-7xl rounded-2xl px-6 transition-all duration-300 backdrop-blur-md
-        ${isScrolled ? "bg-black/80 shadow-lg py-3" : "bg-indigo-900/50 py-4"}
+        ${isScrolled ? "bg-indigo-800/40 shadow-lg py-3" : "bg-indigo-900/50 py-4"}
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"}
       `}
       style={{ transition: "all 0.3s ease" }}
     >
       <nav className="flex items-center justify-between">
         <a href="#" className="text-xl font-bold text-blue-500" >
-        <Image src="/logo.svg" alt="Logo" width={100} height={50} />
+        <Image src="/logo.svg" alt="Logo" width={50} height={50} />
         </a>
 
         <button

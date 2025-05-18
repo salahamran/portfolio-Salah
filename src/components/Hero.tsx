@@ -35,6 +35,7 @@ const Hero = () => {
             frameBorder="0"
             className="w-full h-full absolute top-0 left-0"
             allowFullScreen
+            loading="lazy"
           ></iframe>
         )}
       </div>
