@@ -2,7 +2,8 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const AboutSection = () => {
+
+const About = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -10,15 +11,15 @@ const AboutSection = () => {
     <section
       id="about"
       className="scroll-mt-20 min-h-screen py-20 bg-white z-20 relative"
-      style={{ backgroundColor: "#000000", padding: "0rem 0", overflow: "hidden" }}
+      style={{ backgroundColor: "black", padding: "0rem 0", overflow: "hidden", backgroundImage: "url('/about-bg.jpg')" }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="w-32 h-32 bg-blue-500 rounded-full shadow-lg"
+         initial={{ opacity: 0, scale: 0.8 }}
+         animate={inView ? { opacity: 0.15, scale: 1.2 } : {}}
+         transition={{ duration: 1.5, ease: 'easeOut' }}
+         className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 blur-3xl opacity-20 z-0"
       />
-      
+
       <div className="container">
           
           <div
@@ -325,4 +326,4 @@ const AboutSection = () => {
   );
 };
 
-export default AboutSection;
+export default About;

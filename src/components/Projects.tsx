@@ -66,6 +66,8 @@ const ProjectCard = ({ title, description, tags }: ProjectCardProps) => (
 const ProjectSection = () => {
   return (
     <section id="projects" className="projects-section">
+{/* Spline Background */}
+
       <div className="container mx-auto px-4">
         <div className="mb-6 flex items-center gap-2">
         </div>

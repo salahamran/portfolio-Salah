@@ -94,8 +94,7 @@ body {
 /* Projects section settings */
 
 .projects-section {
-  background: linear-gradient(360deg,rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%);
-  padding: 3rem 1rem;
+  background: black;
 }
 .project-grid {
 display: grid;

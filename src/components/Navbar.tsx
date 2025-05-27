@@ -48,7 +48,7 @@ export default function Navbar() {
     >
       <nav className="flex items-center justify-between">
         <a href="#" className="text-xl font-bold text-blue-500" >
-        <Image src="/logo.svg" alt="Logo" width={50} height={50} />
+        <Image src="/Logo.svg" alt="Logo" width={50} height={50} />
         </a>
 
         <button
