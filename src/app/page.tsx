@@ -17,6 +17,7 @@ export default function Home() {
       <Contact />
       <Footer />
       <CustomCursor />
+      <Analytics />
     </main>
     
   );
