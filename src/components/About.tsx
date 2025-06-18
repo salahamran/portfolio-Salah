@@ -103,7 +103,7 @@ const About = () => {
                   maxWidth: "600px",
                 }}
               >
-                Egypt is where i born, I am Passionate Python Developer, Former Street-photographer willing to create
+                Egypt is where i born, I'ms Passionate Python Developer, Former Street-photographer willing to create
                 technology and make better future.
               </p>
 

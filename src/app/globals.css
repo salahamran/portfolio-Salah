@@ -426,3 +426,53 @@ transform: translateY(-50%) scale(0.98);
     height: 1px;
     background: rgb(97, 97, 97); /* control line color */
   }
+
+
+  @keyframes scroll-text {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-scroll-text {
+    animation: scroll-text 30s linear infinite;
+  }
+  
+
+  @layer utilities {
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    .animate-spin-slow {
+      animation: spin 10s linear infinite;
+    }
+  
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+  }
+  
+
+  @layer utilities {
+    .perspective {
+      perspective: 1000px;
+    }
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+  }
+  

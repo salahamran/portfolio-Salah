@@ -4,11 +4,7 @@ const Contact = () => {
     return (
       <section id="contact" className="py-20 bg-black text-white">
           <div className="absolute inset-0 z-0 pointer-events-none h-[800px]">
-    <iframe
-      src="https://my.spline.design/meeet-12mPVnPUaVIex8KaZx2RMIlw/"
-      className="w-full h-full border-none"
-      allow="autoplay; fullscreen"
-    ></iframe>
+
   </div>
         <div className="container">
           <div className="contact-form-container glow-blue">

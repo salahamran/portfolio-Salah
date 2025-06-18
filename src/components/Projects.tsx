@@ -6,18 +6,21 @@ const projects = [
     description:
       'A tool that scrapes data from websites and stores it in a structured format using BeautifulSoup and Scrapy.',
     tags: ['Python', 'BeautifulSoup', 'Scrapy', 'MongoDB'],
+    link: 'https://github.com/salahamran',
   },
   {
     title: 'Machine Learning API',
     description:
       'A RESTful API built with FastAPI that provides machine learning predictions for time series data.',
     tags: ['Python', 'FastAPI', 'Scikit-learn', 'Docker'],
+    link: 'https://github.com/salahamran',
   },
   {
-    title: 'Boost Your Revenue PRO',
+    title: 'Project Will Be Added Soon',
     description:
       'Unlock new revenue streams with data-driven strategies and marketing.',
     tags: ['Python', 'Data Analysis', 'Marketing', 'Revenue'],
+    link: 'https://github.com/salahamran',
   },
 ];
 
@@ -25,9 +28,10 @@ interface ProjectCardProps {
   title: string;
   description: string;
   tags: string[];
+  link: string;
 }
 
-const ProjectCard = ({ title, description, tags }: ProjectCardProps) => (
+const ProjectCard = ({ title, description, tags, link }: ProjectCardProps) => (
   <div className="project-card">
     <div className="project-card-header">
       <h3 className="project-card-title">{title}</h3>
@@ -41,7 +45,8 @@ const ProjectCard = ({ title, description, tags }: ProjectCardProps) => (
           </span>
         ))}
       </div>
-      <button className="project-card-button">
+      <a href={link}  target="_blank" rel="noopener noreferrer" className="project-card-button">
+        
         <svg
           className="mr-2"
           xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +63,7 @@ const ProjectCard = ({ title, description, tags }: ProjectCardProps) => (
           <polyline points="8 6 2 12 8 18"></polyline>
         </svg>
         Code
-      </button>
+      </a>
     </div>
   </div>
 );
