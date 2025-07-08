@@ -1,91 +1,113 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
+import Image from 'next/image';
 
-const projects = [
+const initialProjects = [
   {
-    title: 'Web Scraping Tool',
-    description:
-      'A tool that scrapes data from websites and stores it in a structured format using BeautifulSoup and Scrapy.',
-    tags: ['Python', 'BeautifulSoup', 'Scrapy', 'MongoDB'],
-    link: 'https://github.com/salahamran',
+    id: 1,
+    type: 'Web App',
+    name: 'Portfolio Website',
+    github: 'https://github.com/salahamran/portfolio',
+    image: '/projects/portfolio.jpg',
   },
   {
-    title: 'Machine Learning API',
-    description:
-      'A RESTful API built with FastAPI that provides machine learning predictions for time series data.',
-    tags: ['Python', 'FastAPI', 'Scikit-learn', 'Docker'],
-    link: 'https://github.com/salahamran',
+    id: 2,
+    type: 'API',
+    name: 'Machine Learning API',
+    github: 'https://github.com/salahamran/ml-api',
+    image: '/projects/ml-api.jpg',
   },
   {
-    title: 'Project Will Be Added Soon',
-    description:
-      'Unlock new revenue streams with data-driven strategies and marketing.',
-    tags: ['Python', 'Data Analysis', 'Marketing', 'Revenue'],
-    link: 'https://github.com/salahamran',
+    id: 3,
+    type: 'Data Tool',
+    name: 'Web Scraper',
+    github: 'https://github.com/salahamran/web-scraper',
+    image: '/projects/scraper.jpg',
+  },
+  {
+    id: 4,
+    type: 'Mobile App',
+    name: 'Revenue Tracker',
+    github: 'https://github.com/salahamran/revenue-app',
+    image: '/projects/revenue.jpg',
   },
 ];
 
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  tags: string[];
-  link: string;
-}
+const moreProjects = [
+  {
+    id: 5,
+    type: 'Web App',
+    name: 'Task Manager',
+    github: 'https://github.com/salahamran/task-manager',
+    image: '/projects/task.jpg',
+  },
+  {
+    id: 6,
+    type: 'API',
+    name: 'Auth Service',
+    github: 'https://github.com/salahamran/auth-service',
+    image: '/projects/auth.jpg',
+  },
+];
 
-const ProjectCard = ({ title, description, tags, link }: ProjectCardProps) => (
-  <div className="project-card">
-    <div className="project-card-header">
-      <h3 className="project-card-title">{title}</h3>
-    </div>
-    <div className="project-card-body">
-      <p className="project-card-description">{description}</p>
-      <div className="project-card-tags">
-        {tags.map((tag, index) => (
-          <span key={index} className="project-tag">
-            {tag}
-          </span>
-        ))}
-      </div>
-      <a href={link}  target="_blank" rel="noopener noreferrer" className="project-card-button">
-        
-        <svg
-          className="mr-2"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="16 18 22 12 16 6"></polyline>
-          <polyline points="8 6 2 12 8 18"></polyline>
-        </svg>
-        Code
-      </a>
-    </div>
-  </div>
-);
+const Projects = () => {
+  const [projects, setProjects] = useState(initialProjects);
+  const [showMore, setShowMore] = useState(false);
 
-const ProjectSection = () => {
+  const handleShowMore = () => {
+    setProjects([...projects, ...moreProjects]);
+    setShowMore(true);
+  };
+
   return (
-    <section id="projects" className="projects-section">
-{/* Spline Background */}
+    <section id="projects" className="py-20 px-6 bg-white text-black">
+      <div className="max-w-6xl mx-auto text-center">
+        <p className="text-sm text-neutral-500 mb-2">My recent projects</p>
+        <h2 className="text-4xl font-semibold mb-12">Selected work</h2>
 
-      <div className="container mx-auto px-4">
-        <div className="mb-6 flex items-center gap-2">
-        </div>
-        <h2 className="section-title">Recent Projects</h2>
-        <h2 className="section-title-small">Check on Github</h2>
-        <div className="project-grid">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="bg-neutral-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition"
+            >
+              {/* Image container */}
+              <div className="relative aspect-video rounded-xl overflow-hidden mb-4">
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover"
+                />
+
+                {/* Button on image */}
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-4 left-4 bg-white text-black border border-neutral-300 px-4 py-2 rounded-full text-sm hover:shadow transition"
+                >
+                  view on Github →
+                </a>
+              </div>
+
+              <p className="text-sm text-neutral-500">{project.type}</p>
+              <h3 className="font-semibold">{project.name}</h3>
+            </div>
           ))}
         </div>
+
+        {!showMore && (
+          <button
+            onClick={handleShowMore}
+            className="mt-12 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-sm flex items-center gap-2"
+          >
+            See more projects <span className="text-xl">↓</span>
+          </button>
+        )}
       </div>
     </section>
   );
 };
 
-export default ProjectSection;
+export default Projects;

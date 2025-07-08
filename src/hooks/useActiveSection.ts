@@ -1,25 +1,39 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 export function useActiveSection(sectionIds: string[]) {
-  const [activeId, setActiveId] = useState(sectionIds[0])
+  const [active, setActive] = useState(sectionIds[0]) // defaults to 'home'
 
   useEffect(() => {
-    const handleScroll = () => {
-      const offsets = sectionIds.map(id => {
-        const el = document.getElementById(id)
-        if (!el) return { id, top: Infinity }
-        const rect = el.getBoundingClientRect()
-        return { id, top: rect.top }
-      })
+    function handleScroll() {
+      const scrollY = window.scrollY + window.innerHeight / 3
 
-      const visible = offsets.find(s => s.top >= 0) || offsets[0]
-      setActiveId(visible.id)
+      const sections = sectionIds.map((id) => {
+        const el = document.getElementById(id)
+        if (!el) return null
+
+        const top = el.offsetTop
+        const bottom = top + el.offsetHeight
+
+        return { id, top, bottom }
+      }).filter(Boolean) as { id: string, top: number, bottom: number }[]
+
+      const current = sections.find((section) => scrollY >= section.top && scrollY < section.bottom)
+      if (current && current.id !== active) {
+        setActive(current.id)
+      }
+
+      // Scroll to top fallback (hero)
+      if (window.scrollY < 200 && active !== sectionIds[0]) {
+        setActive(sectionIds[0])
+      }
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // initial check
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Initial check
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [sectionIds])
+  }, [sectionIds, active])
 
-  return activeId
+  return active
 }

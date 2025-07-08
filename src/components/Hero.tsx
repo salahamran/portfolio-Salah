@@ -1,7 +1,10 @@
 'use client'
 import { motion } from 'framer-motion'
+import RevealOnScroll from './RevealOnScroll'
 import Image from 'next/image'
 import React from 'react'
+import HeroShapes from './HeroShapes'
+
 
 const Hero = () => {
   return (
@@ -15,16 +18,14 @@ const Hero = () => {
         SALAH AMRAN PYTHON DEVLOPER SALAH AMRAN PYTHON DEVLOPER SALAH AMRAN PYTHON DEVLOPER
       </motion.div>
       <div className="absolute inset-0 pointer-events-none z-10">
-        <Image src="/3d/knot.png" alt="knot" width={250} height={250} className="absolute top-1/2 right-1/3 animate-float" />
-        <Image src="/3d/pyramid.png" alt="pyramid" width={250} height={250} className="absolute bottom-1/5 left-1/3 animate-float" />
-        <Image src="/3d/sphere.png" alt="sphere" width={250} height={250} className="absolute top-4/20 left-7/20 animate-float" />
+      <HeroShapes />
       </div>
       {/* Foreground Content */}
       <div className="relative z-10 text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold text-black">
+        <h1 className="text-4xl sm:text-5xl font-bold text-black m-[10]">
           Hi, I&apos;m <span className="italic">Salah</span>!
         </h1>
-        <p className="mt-2 text-gray-500">Python Developer</p>
+        <p className="mt-2 text-gray-500 m-[10]">Python Developer</p>
 
         <div className="w-[300px] h-[300px] mx-auto perspective">
   <div className="relative w-full h-full transition-transform duration-700 transform-style preserve-3d hover:rotate-y-180">
@@ -54,11 +55,16 @@ const Hero = () => {
     </div>
   </div>
 </div>
+<button  className="group relative mt-20 pl-6 pr-6 py-3 font-semibold text-black rounded-full outline outline-5 outline-blue-600 transition-all duration-300 hover:pr-15">
+  {/* Expanding Circle on the Left */}
+  <span className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-blue-600 opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 flex items-center justify-center">
+    {/* You can put an arrow here: ↓ or → or SVG */}
+    <span className="text-white text-xs">→</span>
+  </span>
+  <a href="#projects">View my projects</a>
+  
+</button>
 
-
-        <button className="mt-6 px-6 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-900 transition">
-          View my projects
-        </button>
       </div>
     </section>
   )

@@ -1,56 +1,84 @@
-import React from 'react';
-
-const Contact = () => {
-    return (
-      <section id="contact" className="py-20 bg-black text-white">
-          <div className="absolute inset-0 z-0 pointer-events-none h-[800px]">
-
-  </div>
-        <div className="container">
-          <div className="contact-form-container glow-blue">
-            <div className="contact-header">
-              <h2>Hey! Lets talk!</h2>
-              <p>Do you have a question?</p>
-              <p className="mt-4">Leave your email - Ill write you back for sure!</p>
+'use client';
+import Image from 'next/image';
+import { FaInstagram, FaGithub, FaTelegram } from 'react-icons/fa';
+export default function Contact() {
+  return (
+    <section id="contact" className="py-24 px-6 bg-white text-black">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* LEFT SIDE */}
+        <div className="space-y-6">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/profile.jpg"
+              alt="Profile"
+              width={64}
+              height={64}
+              className="rounded-full ring-4 "
+            />
+            <div>
+              <h3 className="text-xl font-semibold">Salah Amran</h3>
+              <p className="text-sm text-neutral-600">Python Developer</p>
             </div>
-            
-            <form className="flex flex-col items-center">
-              <div className="contact-input-group">
-                <input
-                  type="email"
-                  placeholder="name@email.com"
-                  className="contact-input"
-                  required
-                />
-                <button type="submit" className="contact-button">
-                  Get notified
-                </button>
-              </div>
-              
-              <div className="contact-email">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                <a href="mailto:salah.amran@yandex.ru" className="text-white hover:underline">
-                  salah.amran@yandex.ru
-                </a>
-              </div>
-            </form>
           </div>
-        </div>
-      </section>
-    );
-  }
 
-export default Contact;
+          <div className="flex gap-4 text-lg text-neutral-700">
+            <a href="#" className="hover:text-blue-600"><FaGithub /></a>
+            <a href="#" className="hover:text-blue-600"><FaInstagram /></a>
+            <a href="#" className="hover:text-blue-600"><FaTelegram /></a>
+          </div>
+
+          <div>
+            <p className="text-sm text-neutral-400">contact me</p>
+            <p className="text-lg font-bold">salah.amran@hotmail.com</p>
+          </div>
+
+          <p className="text-neutral-700">
+            Hit me up if you’re looking for a fast, reliable Python-developer who can bring your vision to life.
+          </p>
+
+          <button className="bg-black text-white px-6 py-3 rounded-full flex items-center gap-3 text-sm shadow">
+             <span className="text-lg"></span>
+            <a href="#name_input">Contact me</a>
+          </button>
+        </div>
+
+        {/* RIGHT SIDE */}
+        <div className="relative z-10">
+      {/* floating behind */}
+      <div className="absolute inset-0 pointer-events-none z-[-1]">
+        <Image src="/3d/knot.png" alt="knot" width={1200} height={1200} className="absolute top-2/90 right-2/60 animate-float " />
+      </div>
+      
+          <div className="absolute -top-10 -left-10 w-[120%] h-[120%] bg-blue-100 rounded-full blur-3xl opacity-30 z-[-1]" />
+          <form id='contact_form' className="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+            <h3 className="text-lg font-semibold">Leave me a message</h3>
+
+            <input
+            id='name_input'
+              type="text"
+              placeholder="write your name"
+              className="w-full px-4 py-3 rounded-lg border border-neutral-200"
+            />
+            <input
+              type="email"
+              placeholder="username@mail.com"
+              className="w-full px-4 py-3 rounded-lg border border-neutral-200"
+            />
+            <textarea
+              rows={4}
+              placeholder="write your message"
+              className="w-full px-4 py-3 rounded-lg border border-neutral-200 resize-none"
+            ></textarea>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+            >
+              Contact me
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
