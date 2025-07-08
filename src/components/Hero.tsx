@@ -1,6 +1,5 @@
 'use client'
 import { motion } from 'framer-motion'
-import RevealOnScroll from './RevealOnScroll'
 import Image from 'next/image'
 import React from 'react'
 import HeroShapes from './HeroShapes'
