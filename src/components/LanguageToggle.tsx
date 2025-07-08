@@ -13,7 +13,7 @@ export default function LanguageToggle() {
   const flagClass = language === 'en' ? 'fi fi-gb' : 'fi fi-ru'
 
   return (
-    <div className="fixed top-6 left-6 z-50">
+    <div className="fixed md:fixed md:top-6 md:left-6 z-50">
       <button
         onClick={toggleLanguage}
         className=" w-10 h-7 rounded-md hover:shadow transition flex items-center justify-center"
