@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
@@ -513,4 +516,72 @@ transform: translateY(-50%) scale(0.98);
 
 .rotate-y-15 {
   transform: rotateY(15deg);
+}
+
+
+:root {
+  --bg-color: #fff;
+  --text-primary: #000;
+  --text-secondary: #6b7280; /* Tailwind gray-500 */
+  --text-muted: black;
+  --card-bg: #fff;
+  --accent-color: #2563eb; /* Tailwind blue-600 */
+  --light-photo-display: block;
+  --dark-photo-display: none;
+  --light-logo-display: inline;  /* default light logo visible */
+  --dark-logo-display: none;     /* default dark logo hidden */
+  --navbar-bg: rgba(255, 255, 255, 0.8);
+  --navbar-text: #000000;
+  --nav-highlight-bg: #2563eb;
+  --text-button: white;
+  --form-input-bg: #f0f0f0;
+  --from-input-text: rgb(46, 46, 46);
+  --skills-bg: #000000;
+  --hover-text: white;
+  --navbar-text-inactive: white;
+  --navbar-text-active: black;
+}
+
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af; /* lighter gray */
+  --text-muted: white;
+  --card-bg: #000000;
+  --accent-color: #A8FC5A; /* lighter blue / lime */
+  --light-photo-display: none;
+  --dark-photo-display: block;
+  --light-logo-display: none;
+  --dark-logo-display: inline;
+  --navbar-bg: rgba(0, 0, 0, 0.9);
+  --navbar-text: #ffffff;
+  --nav-highlight-bg: #A8FC5A;
+  --form-input-bg: #282828;
+  --text-button: black;
+  --skills-bg: #A8FC5A;
+  --hover-text: rgb(255, 255, 255);
+}
+
+html, body, section, h1, p, button {
+  transition: background-color 0.3s ease, color 0.3s ease, outline-color 0.3s ease;
+}
+
+[data-theme='light'] {
+  --light-logo-display: inline;
+  --dark-logo-display: none;
+  --navbar-bg: rgba(255, 255, 255, 0.8);
+  --navbar-text-inactive: black;
+  --navbar-text-active: white;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out forwards;
 }

@@ -1,0 +1,126 @@
+'use client';
+import React, { useState } from 'react';
+import Image from 'next/image';
+
+const initialProjects = [
+  {
+    id: 1,
+    type: 'FoodGram Web',
+    name: 'Portfolio Website',
+    github: 'https://github.com/salahamran/portfolio',
+    imageLight: '/projects/git-back.jpg',
+    imageDark: '/projects/git-back-dark.jpg',
+  },
+  {
+    id: 2,
+    type: 'API',
+    name: 'Machine Learning API',
+    github: 'https://github.com/salahamran/ml-api',
+    imageLight: '/projects/git-back.jpg',
+    imageDark: '/projects/git-back-dark.jpg',
+  },
+  {
+    id: 3,
+    type: 'Data Tool',
+    name: 'Web Scraper',
+    github: 'https://github.com/salahamran/web-scraper',
+    imageLight: '/projects/git-back.jpg',
+    imageDark: '/projects/git-back-dark.jpg',
+  },
+  {
+    id: 4,
+    type: 'Mobile App',
+    name: 'Revenue Tracker',
+    github: 'https://github.com/salahamran/revenue-app',
+    imageLight: '/projects/git-back.jpg',
+    imageDark: '/projects/git-back-dark.jpg',
+  },
+];
+
+const moreProjects = [
+  {
+    id: 5,
+    type: 'Web App',
+    name: 'Task Manager',
+    github: 'https://github.com/salahamran/task-manager',
+    imageLight: '/projects/git-back.jpg',
+    imageDark: '/projects/git-back-dark.jpg',
+  },
+  {
+    id: 6,
+    type: 'API',
+    name: 'Auth Service',
+    github: 'https://github.com/salahamran/auth-service',
+    imageLight: '/projects/git-back.jpg',
+    imageDark: '/projects/git-back-dark.jpg',
+  },
+];
+
+const Projects = () => {
+  const [projects, setProjects] = useState(initialProjects);
+  const [showMore, setShowMore] = useState(false);
+
+  const handleShowMore = () => {
+    setProjects([...projects, ...moreProjects]);
+    setShowMore(true);
+  };
+
+  return (
+    <section
+      id="projects"
+      className="py-20 px-6 bg-white text-black dark:bg-[#121212] dark:text-gray-300 transition-colors duration-500"
+      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)' }}
+    >
+      <div className="max-w-6xl mx-auto text-center">
+        <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">My recent projects</p>
+        <h2 className="text-4xl font-semibold mb-12">Selected work</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <a
+              key={project.id}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-black-100 dark:bg-gray-800 p-4 rounded-2xl shadow-sm hover:shadow-md transition hover:scale-[1.02]"
+            >
+              <div className="relative aspect-video rounded-xl overflow-hidden mb-4">
+                {/* Light theme photo */}
+                <Image
+                  src={project.imageLight}
+                  alt={`${project.name} light`}
+                  fill
+                  style={{ objectFit: 'cover', display: 'var(--light-photo-display)' }}
+                  priority
+                />
+                {/* Dark theme photo */}
+                <Image
+                  src={project.imageDark}
+                  alt={`${project.name} dark`}
+                  fill
+                  style={{ objectFit: 'cover', display: 'var(--dark-photo-display)' }}
+                  priority
+                />
+              </div>
+
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{project.type}</p>
+              <h3 className="font-semibold">{project.name}</h3>
+            </a>
+          ))}
+        </div>
+
+        {!showMore && (
+          <button
+            onClick={handleShowMore}
+            className="mt-12 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-sm flex items-center gap-2 mx-auto"
+            style={{ backgroundColor: 'var(--accent-color)', color: 'var(--text-button)' }}
+          >
+            See more projects <span className="text-xl">↓</span>
+          </button>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default Projects;

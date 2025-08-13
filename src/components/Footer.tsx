@@ -1,16 +1,24 @@
 export default function Footer() {
   return (
-    <footer className="relative py-28 bg-white text-black overflow-hidden">
+    <footer
+      className="relative py-28 overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)' }}
+    >
       {/* Big static background text */}
       <div className="absolute inset-5 flex justify-center items-center pointer-events-none">
-        <h2 className="text-[14vw] font-extrabold opacity-60 leading-none select-none text-center">
+        <h2
+          className="text-[14vw] font-extrabold  leading-none select-none text-center"
+          style={{ color: 'var(--text-primary)' }}
+        >
           PYTHON DEVELOPER
         </h2>
       </div>
 
-      {/* Optional content inside footer */}
+      {/* Footer content */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center">
-        <p className="text-sm opacity-60">© {new Date().getFullYear()} Salah Amran. All rights reserved.</p>
+        <p className="text-sm " style={{ color: 'var(--text-primary)' }}>
+          © {new Date().getFullYear()} Salah Amran. All rights reserved.
+        </p>
       </div>
     </footer>
   );
