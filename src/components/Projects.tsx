@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import ProjectOverlay from './ProjectOverlay';
+import { Project } from '@/types/project';
 
-const initialProjects = [
+const projectsData: Project[] = [
   {
     id: 1,
     type: 'FoodGram Web',
@@ -20,28 +21,10 @@ const initialProjects = [
     techIcons: ['/icons/django.svg', '/icons/github.svg', '/icons/docker.svg', '/icons/python.svg'],
     screenshots: ['/projects/git-back.jpg', '/projects/git-back.jpg'],
   },
-  {
-    id: 1,
-    type: 'KityGram Web',
-    name: 'kittyGram - the social media website for Recipes and chefs',
-    github: 'https://github.com/salahamran/',
-    imageLight: '/projects/git-back.jpg',
-    imageDark: '/projects/git-back-dark.jpg',
-    tags: ['Python', 'Django', 'API'],
-    workTime: '5 weeks',
-    role: 'Backend',
-    workFor: 'Yandex Practicum',
-    description:
-      'This project was made as a social media platform for people to publish and show their recipes and for the public to find recipes to cook.',
-    techIcons: ['/icons/django.svg', '/icons/github.svg', '/icons/docker.svg', '/icons/python.svg'],
-    screenshots: ['/projects/git-back.jpg', '/projects/git-back.jpg', '/projects/git-back.jpg'],
-  },
-
 ];
 
-const Projects = () => {
-  const [projects] = useState(initialProjects);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section
@@ -54,7 +37,7 @@ const Projects = () => {
         <h2 className="text-4xl font-semibold mb-12">Selected work</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {projects.map((project) => (
+          {projectsData.map((project) => (
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
@@ -81,12 +64,9 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Fullscreen Overlay */}
       {selectedProject && (
         <ProjectOverlay project={selectedProject} onClose={() => setSelectedProject(null)} />
       )}
     </section>
   );
-};
-
-export default Projects;
+}
