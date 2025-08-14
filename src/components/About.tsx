@@ -1,329 +1,135 @@
-'use client';
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+'use client'
+import React, { useRef } from 'react'
+import Image from 'next/image'
+import { motion, useInView } from 'framer-motion'
+import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
 
+const skills = [
+  'Gunicorn',
+  'Postman API',
+  'Fast Api',
+  'PostgreSQL',
+  'Nginx',
+  'Django',
+  'React',
+  'Docker',
+  'TypeScript',
+  'Django REST Framework',
+  'Git',
+  'vs code'
+]
 
-const About = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
+export default function About() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, margin: '-100px' })
 
   return (
     <section
       id="about"
-      className="scroll-mt-20 min-h-screen py-20 bg-white z-20 relative"
-      style={{ backgroundColor: "black", padding: "0rem 0", overflow: "hidden", backgroundImage: "url('/about-bg.jpg')" }}
+      className="py-24 px-6 overflow-hidden"
+      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)' }}
     >
       <motion.div
-         initial={{ opacity: 0, scale: 0.8 }}
-         animate={inView ? { opacity: 0.15, scale: 1.2 } : {}}
-         transition={{ duration: 1.5, ease: 'easeOut' }}
-         className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 blur-3xl opacity-20 z-0"
-      />
-
-      <div className="container">
-          
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "3rem",
-              maxWidth: "1200px",
-              margin: "0 auto",
-            }}
-            className="about-grid"
+        ref={ref}
+        initial={{ opacity: 0, y: 60 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start"
+      >
+        {/* Left Side */}
+        <div className="flex flex-col items-start space-y-6">
+          <span
+            className="text-sm"
+            style={{ color: 'var(--accent-color)' }}
           >
-          
-              {/* Image Column */}
-              <div className="image-column-container">
-                <div className="image-column-inner framed-photo hover:animate-photo-wiggle transition-transform duration-500">
-                  <div className="image-overlay"></div>
-                </div>
-                <div className="image-glow"></div>
-              </div>
+            ● Available for work
+          </span>
 
-            {/* Content Column */}
+          <h2 className="text-5xl font-bold">
+            About <span className="font-light">me</span>
+          </h2>
+
+          <div className="flex items-center gap-4">
+            <div className="relative w-[60px] h-[60px] rounded-full overflow-hidden">
+            <div className="relative w-72 h-72">
+      {/* Light theme photo */}
+      <Image
+        src="/profile.jpg"
+        alt="Profile Light"
+        style={{ objectFit: "cover", display: "var(--light-photo-display)" }}
+        width={60}
+        height={60}
+        priority
+      />
+      {/* Dark theme photo */}
+      <Image
+        src="/profile-dark.png"
+        alt="Profile Dark"
+        width={60}
+        height={60}
+        style={{ objectFit: "cover", display: "var(--dark-photo-display)" }}
+        sizes="(max-width: 768px) 100vw, 300px"
+        priority
+      />
+    </div>
+
+            </div>
+
             <div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <span
-                  style={{
-                    width: "0.5rem",
-                    height: "0.5rem",
-                    backgroundColor: "#ffffff",
-                    borderRadius: "50%",
-                  }}
-                ></span>
-                <span
-                  style={{
-                    color: "#ffffff",
-                    fontSize: "0.875rem",
-                    fontWeight: "500",
-                  }}
-                >
-                  About Me
-                </span>
-              </div>
-
-              <h2
-                style={{
-                  fontSize: "3rem",
-                  fontWeight: "700",
-                  color: "#ffffff",
-                  marginBottom: "0.5rem",
-                  lineHeight: "1.2",
-                }}
-              >
-                Hi! Friend
-              </h2>
-
-              <h3
-                style={{
-                  fontSize: "2.5rem",
-                  fontWeight: "500",
-                  color: "#9ca3af",
-                  marginBottom: "1.5rem",
-                  lineHeight: "1.2",
-                }}
-              >
-                My name is Salah Amran!
-              </h3>
-
-              <p
-                style={{
-                  color: "#9ca3af",
-                  fontSize: "1rem",
-                  lineHeight: "1.7",
-                  marginBottom: "2rem",
-                  maxWidth: "600px",
-                }}
-              >
-                Egypt is where i born, I am Passionate Python Developer, Former Street-photographer willing to create
-                technology and make better future.
+              <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>
+                salah.amran@hotmail.com
               </p>
+              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                Python developer / street photographer
+              </p>
+            </div>
+          </div>
 
-              <div
-                style={{
-                  width: "100%",
-                  height: "1px",
-                  backgroundColor: "rgba(255, 255, 255, 0.1)",
-                  margin: "2rem 0",
-                }}
-              ></div>
+          <div className="flex items-center gap-4 text-xl" style={{ color: 'var(--text-secondary)' }}>
+            <a href="#" aria-label="Instagram"><FaInstagram /></a>
+            <a href="#" aria-label="LinkedIn"><FaLinkedin /></a>
+            <a href="#" aria-label="GitHub"><FaGithub /></a>
+          </div>
 
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <div
-                  style={{
-                    width: "1.25rem",
-                    height: "1.25rem",
-                    borderRadius: "50%",
-                    backgroundColor: "#0066ff",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </div>
-                <span
-                  style={{
-                    color: "#ffffff",
-                    fontSize: "1rem",
-                    fontWeight: "500",
-                  }}
-                >
-                  Skills And Technologies
-                </span>
-              </div>
+          <a
+            href="#contact"
+            className="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 hover:scale-105 transition"
+            style={{ backgroundColor: 'var(--accent-color)', color: 'var(--text-button)' }}
+          >
+            Contact me →
+          </a>
+        </div>
 
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "0.75rem",
-                  marginBottom: "2rem",
-                }}
-              >
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Enhanced UX
-                </span>
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Boosted Conversions
-                </span>
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Fast Loading
-                </span>
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  SEO Optimized
-                </span>
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Customizable
-                </span>
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Increased Engagement
-                </span>
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Expandable
-                </span>
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Secure
-                </span>
-                <span
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
-                    color: "#d1d5db",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "0.375rem",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  User-Friendly
-                </span>
-              </div>
+        {/* Right Side */}
+        <div className="space-y-6">
+          <p className="text-lg font-bold leading-snug" style={{ color: 'var(--text-primary)' }}>
+            Hi, I’m Salah, a passionate Python developer with a love for creating smart digital solutions.
+            With a strong background in backend development and creative design, I build web apps that work smoothly and look great across all devices.
+          </p>
+          <p className="text-gray-600" style={{ color: 'var(--text-secondary)' }}>
+            Over the years, I’ve had the opportunity to work with startups and creative teams, helping them turn ideas into reality. Let’s build something amazing together.
+          </p>
+          <p className="text-lg font-bold leading-snug" style={{ color: 'var(--text-primary)' }}>
+            Let’s build something amazing together.
+          </p>
 
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "1rem",
-                  alignItems: "center",
-                }}
-              >
-                <a
-                  href="#contact"
-                  style={{
-                    backgroundColor: "#ffffff",
-                    color: "#000000",
-                    padding: "0.75rem 1.5rem",
-                    borderRadius: "0.375rem",
-                    fontWeight: "500",
-                    textDecoration: "none",
-                    display: "inline-block",
-                  }}
+          <div className="bg-gray-600 p-6 rounded-xl" style={{ backgroundColor: 'var(--card-bg)' }}>
+            <h3 className="text-black text-xl font-semibold mb-4" style={{ color: 'var(--text-primary)' }}
+             >Skills & Technology</h3>
+            <div className="flex flex-wrap gap-3">
+              {skills.map((skill, i) => (
+                <span
+                  key={i}
+                  className="bg-black text-white px-4 py-2 rounded-xl text-sm"
+                  style={{ backgroundColor: 'var(--skills-bg)', color: 'var(--text-button)' }}
                 >
-                  Contact Now
-                </a>
-                <a
-                  href="#projects"
-                  style={{
-                    backgroundColor: "#0066ff",
-                    color: "#ffffff",
-                    padding: "0.75rem 1.5rem",
-                    borderRadius: "0.375rem",
-                    fontWeight: "500",
-                    textDecoration: "none",
-                    display: "inline-block",
-                  }}
-                >
-                  View Projects
-                </a>
-
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    marginLeft: "1rem",
-                  }}
-                >
-                  
-
-                </div>
-              </div>
+                  {skill}
+                </span>
+              ))}
             </div>
           </div>
         </div>
+      </motion.div>
     </section>
-    
-  );
-};
-
-export default About;
+  )
+}

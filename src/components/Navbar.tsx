@@ -1,92 +1,154 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import { Menu, X } from 'lucide-react'
-import Image from 'next/image';
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { useActiveSection } from '@/hooks/useActiveSection'
+import Image from 'next/image'
+import MobileMenu from './MobileMenu'
+
+const items = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' },
+]
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [lastScrollY, setLastScrollY] = useState(0)
+  const active = useActiveSection(items.map(i => i.id))
 
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
-  ]
+  // Split items to insert logo in the middle
+  const half = Math.ceil(items.length / 2)
+  const firstHalf = items.slice(0, half)
+  const secondHalf = items.slice(half)
 
-  useEffect(() => {
-    setLastScrollY(window.scrollY)
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      setIsScrolled(currentScrollY > 10)
-
-      if (currentScrollY < 50 || currentScrollY < lastScrollY) {
-        setIsVisible(true)
-      } else {
-        setIsVisible(false)
-      }
-
-      setLastScrollY(currentScrollY)
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])
+  // Custom scroll for home to fix offset (for other ids Next Link smooth scroll should work)
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
-    <header
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-7xl rounded-2xl px-6 transition-all duration-300 backdrop-blur-md
-        ${isScrolled ? "bg-indigo-800/40 shadow-lg py-3" : "bg-indigo-900/50 py-4"}
-        ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"}
-      `}
-      style={{ transition: "all 0.3s ease" }}
-    >
-      <nav className="flex items-center justify-between">
-        <a href="#" className="text-xl font-bold text-blue-500" >
-        <Image src="/Logo.svg" alt="Logo" width={50} height={50} />
-        </a>
-
-        <button
-          className="md:hidden text-gray-300"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+    <>
+      {/* Desktop Navbar */}
+      <nav className="fixed top-6 left-0 right-0 z-50 hidden md:flex justify-center">
+        <div className="relative flex items-center rounded-full px-2 py-2 shadow-lg h-14"
+        style={{ backgroundColor: 'var(--navbar-bg)' }}
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* First Half of Items */}
+          {firstHalf.map(({ id, label }) =>
+            id === 'home' ? (
+              <a
+                key={id}
+                href="#home"
+                onClick={handleHomeClick}
+                className="relative h-full flex items-center px-6 font-medium"
+              >
+                {active === id && (
+                  <motion.div
+                    layoutId="nav-highlight"
+                    className="absolute top-0 left-0 w-full h-full bg-[#A8FC5A] rounded-full z-0"
+                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                    style={{ backgroundColor: 'var(--nav-highlight-bg)' }}
+                  />
+                )}
+                <span
+                  className="relative z-10"
+                  style={{
+                    color:
+                      active === id
+                        ? 'var(--navbar-text-active)'
+                        : 'var(--navbar-text-inactive)',
+                  }}
+                >
+                  {label}
+                </span>
+              </a>
+            ) : (
+              <Link
+                key={id}
+                href={`#${id}`}
+                className="relative h-full flex items-center px-6 font-medium"
+              >
+                {active === id && (
+                  <motion.div
+                    layoutId="nav-highlight"
+                    className="absolute top-0 left-0 w-full h-full bg-[#A8FC5A] rounded-full z-0"
+                    transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                    style={{ backgroundColor: 'var(--nav-highlight-bg)' }}
+                  />
+                )}
+                <span
+                  className="relative z-10"
+                  style={{
+                    color:
+                      active === id
+                        ? 'var(--navbar-text-active)'
+                        : 'var(--navbar-text-inactive)',
+                  }}
+                >
+                  {label}
+                </span>
+              </Link>
+            )
+          )}
 
-        <div className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-gray-300 hover:text-blue-500 transition-colors"
+          {/* Logo in the middle with light and dark images */}
+          <div className="px-4 cursor-pointer select-none">
+            {/* Light theme logo */}
+            <Image
+              src="/logo.png"
+              alt="Logo Light"
+              width={40}
+              height={40}
+              className="object-contain"
+              style={{ display: 'var(--light-logo-display)' }}
+              draggable={false}
+            />
+            {/* Dark theme logo */}
+            <Image
+              src="/logo-dark.png"
+              alt="Logo Dark"
+              width={40}
+              height={40}
+              className="object-contain"
+              style={{ display: 'var(--dark-logo-display)' }}
+              draggable={false}
+            />
+          </div>
+
+          {/* Second Half of Items */}
+          {secondHalf.map(({ id, label }) => (
+            <Link
+              key={id}
+              href={`#${id}`}
+              className="relative h-full flex items-center px-6 font-medium"
             >
-              {link.name}
-            </a>
+              {active === id && (
+                <motion.div
+                  layoutId="nav-highlight"
+                  className="absolute top-0 left-0 w-full h-full bg-[#A8FC5A] rounded-full z-0"
+                  transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                  style={{ backgroundColor: 'var(--nav-highlight-bg)' }}
+                />
+              )}
+              <span
+                className="relative z-10"
+                style={{
+                  color:
+                    active === id
+                      ? 'var(--navbar-text-active)'
+                      : 'var(--navbar-text-inactive)',
+                }}
+              >
+                {label}
+              </span>
+            </Link>
           ))}
         </div>
       </nav>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden mt-4 rounded-xl bg-black/90 backdrop-blur-lg p-4 transition-all duration-300 shadow-lg">
-          <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-gray-300 hover:text-blue-500 transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
+      {/* Mobile Navbar */}
+      <MobileMenu />
+    </>
   )
 }

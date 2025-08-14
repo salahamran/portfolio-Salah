@@ -1,86 +1,72 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import ProjectOverlay from './ProjectOverlay';
+import { Project } from '@/types/project';
 
-const projects = [
+const projectsData: Project[] = [
   {
-    title: 'Web Scraping Tool',
+    id: 1,
+    type: 'FoodGram Web',
+    name: 'Foodgram - the social media website for Recipes and chefs',
+    github: 'https://github.com/salahamran/',
+    imageLight: '/projects/git-back.jpg',
+    imageDark: '/projects/git-back-dark.jpg',
+    tags: ['Python', 'Django', 'API'],
+    workTime: '5 weeks',
+    role: 'Backend',
+    workFor: 'Yandex Practicum',
     description:
-      'A tool that scrapes data from websites and stores it in a structured format using BeautifulSoup and Scrapy.',
-    tags: ['Python', 'BeautifulSoup', 'Scrapy', 'MongoDB'],
-  },
-  {
-    title: 'Machine Learning API',
-    description:
-      'A RESTful API built with FastAPI that provides machine learning predictions for time series data.',
-    tags: ['Python', 'FastAPI', 'Scikit-learn', 'Docker'],
-  },
-  {
-    title: 'Boost Your Revenue PRO',
-    description:
-      'Unlock new revenue streams with data-driven strategies and marketing.',
-    tags: ['Python', 'Data Analysis', 'Marketing', 'Revenue'],
+      'This project was made as a social media platform for people to publish and show their recipes and for the public to find recipes to cook.',
+    techIcons: ['/icons/django.svg', '/icons/github.svg', '/icons/docker.svg', '/icons/python.svg'],
+    screenshots: ['/projects/git-back.jpg', '/projects/git-back.jpg'],
   },
 ];
 
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  tags: string[];
-}
+export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-const ProjectCard = ({ title, description, tags }: ProjectCardProps) => (
-  <div className="project-card">
-    <div className="project-card-header">
-      <h3 className="project-card-title">{title}</h3>
-    </div>
-    <div className="project-card-body">
-      <p className="project-card-description">{description}</p>
-      <div className="project-card-tags">
-        {tags.map((tag, index) => (
-          <span key={index} className="project-tag">
-            {tag}
-          </span>
-        ))}
-      </div>
-      <button className="project-card-button">
-        <svg
-          className="mr-2"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="16 18 22 12 16 6"></polyline>
-          <polyline points="8 6 2 12 8 18"></polyline>
-        </svg>
-        Code
-      </button>
-    </div>
-  </div>
-);
-
-const ProjectSection = () => {
   return (
-    <section id="projects" className="projects-section">
-{/* Spline Background */}
+    <section
+      id="projects"
+      className="py-20 px-6"
+      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)' }}
+    >
+      <div className="max-w-6xl mx-auto text-center">
+        <p className="text-sm mb-2">My recent projects</p>
+        <h2 className="text-4xl font-semibold mb-12">Selected work</h2>
 
-      <div className="container mx-auto px-4">
-        <div className="mb-6 flex items-center gap-2">
-        </div>
-        <h2 className="section-title">Recent Projects</h2>
-        <h2 className="section-title-small">Check on Github</h2>
-        <div className="project-grid">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          {projectsData.map((project) => (
+            <div
+              key={project.id}
+              onClick={() => setSelectedProject(project)}
+              className="cursor-pointer bg-black-100 dark:bg-gray-800 p-4 rounded-2xl shadow-sm hover:shadow-md transition hover:scale-[1.02]"
+            >
+              <div className="relative aspect-video rounded-xl overflow-hidden mb-4">
+                <Image
+                  src={project.imageLight}
+                  alt={`${project.name} light`}
+                  fill
+                  style={{ objectFit: 'cover', display: 'var(--light-photo-display)' }}
+                />
+                <Image
+                  src={project.imageDark}
+                  alt={`${project.name} dark`}
+                  fill
+                  style={{ objectFit: 'cover', display: 'var(--dark-photo-display)' }}
+                />
+              </div>
+              <p className="text-sm">{project.type}</p>
+              <h3 className="font-semibold">{project.name}</h3>
+            </div>
           ))}
         </div>
       </div>
+
+      {selectedProject && (
+        <ProjectOverlay project={selectedProject} onClose={() => setSelectedProject(null)} />
+      )}
     </section>
   );
-};
-
-export default ProjectSection;
+}
