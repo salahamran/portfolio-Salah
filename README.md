@@ -112,8 +112,8 @@ npm run start
 
 - Text & Links: Update content in Hero.tsx, About.tsx, Contact.tsx
 
-  ## Deployment
-  You can deploy this project on platforms like:
+## Deployment
+You can deploy this project on platforms like:
 
 - Vercel
 
