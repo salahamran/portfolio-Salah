@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio Website
+
+A modern, responsive portfolio website built with **Next.js**, **TypeScript**, and **Tailwind CSS**.  
+The site is designed to showcase projects, skills, and contact information with smooth animations and theme toggling.
+
+---
+
+## Features
+
+- **Dark/Light Mode Toggle**  
+  Persistent theme selection saved in local storage.
+- **Language Switcher (EN/RU)**  
+  Allows switching between English and Russian, with flags for easy identification. (will be added soon)
+- **Custom Cursor**  
+  Replaces the default cursor on desktop for a more interactive feel.
+- **Responsive Mobile Menu**  
+  Animated full-screen overlay menu with integrated theme and language toggles.
+- **Hero Section with Animated Titles**  
+  Rotating text with a 3D flipping effect.
+- **Project Showcase**  
+  Displays projects in a grid layout with the option to load more.
+- **Project Detail Overlay**  
+  Clicking a project opens a full-screen overlay with detailed information.
+- **Contact Form**  
+  Allows visitors to send a message directly from the site.
+- **3D Decorative Shapes**  
+  Animated shapes for a modern aesthetic.
+
+---
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) with App Router
+- **Language:** TypeScript
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Animation:** [Framer Motion](https://www.framer.com/motion/)
+- **Icons:** [Heroicons](https://heroicons.com/), [React Icons](https://react-icons.github.io/react-icons/)
+- **Flags:** [flag-icons](https://www.npmjs.com/package/flag-icons)
+- **Images:** Next.js `Image` component for optimization
+
+---
+
+## Project Structure
+
+src/
+components/
+About.tsx
+Contact.tsx
+CustomCursor.tsx
+Hero.tsx
+HeroShapes.tsx
+LanguageToggle.tsx
+MobileMenu.tsx
+Navbar.tsx
+ProjectOverlay.tsx
+Projects.tsx
+ThemeToggle.tsx
+hooks/
+useActiveSection.ts
+styles/
+globals.css
+---
+
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js v18 or higher
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or 
+yarn install
+```
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+4. Open your browser at:
+```bash
+http://localhost:3000
+```
+5. Building for Production
+```bash
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Customization
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Profile Image: Replace /public/profile.jpg and /public/profile-dark.png
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Accent Colors: Update --accent-color in globals.css
 
-## Learn More
+- Projects: Edit Projects.tsx to add or remove projects
 
-To learn more about Next.js, take a look at the following resources:
+- Text & Links: Update content in Hero.tsx, About.tsx, Contact.tsx
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- You can deploy this project on platforms like:
 
-## Deploy on Vercel
+- Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Netlify
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### License
+
+This project is licensed under the MIT License.
+if you intended to use this project you must change my own information including photos and name and all other info.
