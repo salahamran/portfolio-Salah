@@ -13,7 +13,7 @@ export default function Contact() {
         {/* LEFT SIDE */}
         <div className="space-y-6">
           <div className="flex items-center gap-4">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden " style={{ ringColor: 'var(--accent-color)' }}>
+            <div className="relative w-16 h-16 rounded-full overflow-hidden">
               {/* Light theme profile image */}
               <Image
                 src="/profile.jpg"
@@ -83,8 +83,18 @@ export default function Contact() {
               alt="knot"
               width={1200}
               height={1200}
+              style={{ objectFit: 'cover', display: 'var(--light-photo-display)' }}
               className="absolute top-[11%] right-[3.3%] animate-float"
             />
+            <Image
+              src="/3d/dark/sphere-dark.png"
+              alt="sphere"
+              width={1200}
+              height={1200}
+              className="absolute top-[11%] right-[3.3%] animate-float"
+              style={{ objectFit: 'cover', display: 'var(--dark-photo-display)' }}
+              priority
+              />
           </div>
 
           <div className="absolute -top-10 -left-10 w-[120%] h-[120%] rounded-full blur-3xl opacity-30 z-[-1]" style={{ backgroundColor: 'var(--accent-color-light)' }} />
