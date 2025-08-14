@@ -79,7 +79,7 @@ export default function Contact() {
           {/* floating behind */}
           <div className="absolute inset-0 pointer-events-none z-[-1]">
             <Image
-              src="/3d/knot.png"
+              src="/3d/light/knot.png"
               alt="knot"
               width={1200}
               height={1200}
