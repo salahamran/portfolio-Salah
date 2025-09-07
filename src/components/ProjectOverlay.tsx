@@ -47,7 +47,7 @@ export default function ProjectOverlay({ project, onClose }: ProjectOverlayProps
         )}
 
         {/* Title */}
-        <h1 className="text-3xl font-bold text-center mb-6">{project.name}</h1>
+        <h1 className="text-2xl font-bold text-center mb-9">{project.name}</h1>
 
         {/* Main Image */}
         <div className="max-w-4xl mx-auto mb-8 px-4">
@@ -70,7 +70,7 @@ export default function ProjectOverlay({ project, onClose }: ProjectOverlayProps
         </div>
 
         {/* Overview */}
-        <div className="max-w-3xl mx-auto px-4 mb-8">
+        <div className="max-w-4xl mx-auto px-4 mb-8">
           <h2 className="text-2xl font-semibold mb-3">Project Overview</h2>
           {project.workTime && <p><strong>Work time:</strong> {project.workTime}</p>}
           {project.role && <p><strong>My role:</strong> {project.role}</p>}
@@ -80,7 +80,7 @@ export default function ProjectOverlay({ project, onClose }: ProjectOverlayProps
 
         {/* Tech stack */}
         {project.techIcons && (
-          <div className="max-w-3xl mx-auto px-4 flex gap-6 justify-center py-4 bg-gray-100 dark:bg-gray-800 rounded-xl mb-8">
+          <div className="max-w-4xl mx-auto px-4 flex gap-6 justify-center py-4 bg-gray-100 dark:bg-gray-800 rounded-xl mb-8">
             {project.techIcons.map((icon, idx) => (
               <Image key={idx} src={icon} alt="tech" width={40} height={40} />
             ))}
@@ -89,7 +89,7 @@ export default function ProjectOverlay({ project, onClose }: ProjectOverlayProps
 
         {/* Screenshots */}
         {project.screenshots && (
-          <div className="max-w-5xl mx-auto px-4 flex gap-4 overflow-x-auto pb-6">
+          <div className="max-w-4xl mx-auto px-4 flex gap-4 overflow-x-auto pb-8">
             {project.screenshots.map((shot, idx) => (
               <Image
                 key={idx}

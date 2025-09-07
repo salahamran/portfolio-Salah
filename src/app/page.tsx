@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import ThemeToggle from '@/components/ThemeToggle';
 import LanguageToggle from '@/components/LanguageToggle';
-import { Analytics } from "@vercel/analytics/next";
+// import { Analytics } from "@vercel/analytics/next";
 export default function Home() {
   return (
     <main className="bg-black text-white">
@@ -24,7 +24,7 @@ export default function Home() {
       <Footer />
       <CustomCursor />
       <ThemeToggle/>
-      <Analytics />
+      {/* <Analytics /> */}
     </main>
   );
 }
