@@ -86,9 +86,9 @@ export default function About() {
           </div>
 
           <div className="flex items-center gap-4 text-xl" style={{ color: 'var(--text-secondary)' }}>
-            <a href="#" aria-label="Instagram"><FaInstagram /></a>
-            <a href="#" aria-label="LinkedIn"><FaLinkedin /></a>
-            <a href="#" aria-label="GitHub"><FaGithub /></a>
+            <a href="https://www.instagram.com/salah.0mran/" target='_blank' aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://www.linkedin.com/in/salah-amran/" target='_blank' aria-label="LinkedIn"><FaLinkedin /></a>
+            <a href="https://github.com/salahamran" target='_blank' aria-label="GitHub"><FaGithub /></a>
           </div>
 
           <a

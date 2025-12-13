@@ -42,13 +42,13 @@ export default function Contact() {
           </div>
 
           <div className="flex gap-4 text-lg" style={{ color: 'var(--text-secondary)' }}>
-            <a href="#" aria-label="GitHub" className="hover:text-blue-600">
+            <a href="https://github.com/salahamran" target='_blank' aria-label="GitHub" className="hover:text-blue-600">
               <FaGithub />
             </a>
-            <a href="#" aria-label="Instagram" className="hover:text-blue-600">
+            <a href="https://www.instagram.com/salah.0mran/" target='_blank' aria-label="Instagram" className="hover:text-blue-600">
               <FaInstagram />
             </a>
-            <a href="#" aria-label="Telegram" className="hover:text-blue-600">
+            <a href="https://t.me/Salkinov" target='_blank' aria-label="Telegram" className="hover:text-blue-600">
               <FaTelegram />
             </a>
           </div>

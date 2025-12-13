@@ -524,7 +524,7 @@ transform: translateY(-50%) scale(0.98);
   --text-primary: #000;
   --text-secondary: #6b7280; /* Tailwind gray-500 */
   --text-muted: black;
-  --card-bg: #fff;
+  --card-bg: #f2f2f2;
   --accent-color: #2563eb; /* Tailwind blue-600 */
   --light-photo-display: block;
   --dark-photo-display: none;
@@ -534,7 +534,7 @@ transform: translateY(-50%) scale(0.98);
   --navbar-text: #000000;
   --nav-highlight-bg: #2563eb;
   --text-button: white;
-  --form-input-bg: #f0f0f0;
+  --form-input-bg: #e2e2e2;
   --from-input-text: rgb(46, 46, 46);
   --skills-bg: #000000;
   --hover-text: white;
@@ -585,3 +585,7 @@ html, body, section, h1, p, button {
 .animate-slideUp {
   animation: slideUp 0.3s ease-out forwards;
 }
+
+
+
+/* f2f2f2 */

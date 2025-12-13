@@ -6,11 +6,12 @@ import { Project } from '@/types/project';
 
 const projectsData: Project[] = [
   
+  
   {
     id: 1,
-    type: 'FoodGram Web',
-    name: 'Foodgram - the social media website for Recipes and chefs',
-    github: 'https://github.com/salahamran/',
+    type: 'Search job API',
+    name: 'Backend API for Job Assistant Platform',
+    github: 'https://github.com/salahamran/job_search_backend',
     imageLight: '/projects/portfolio.jpg',
     imageDark: '/projects/git-back-dark.jpg',
     tags: ['Python', 'Django', 'API'],
@@ -70,22 +71,7 @@ const projectsData: Project[] = [
     techIcons: ['/icons/django.svg', '/icons/github.svg', '/icons/docker.svg', '/icons/python.svg'],
     screenshots: ['/projects/foodgram-recipe.png', '/projects/foodgram-register.png'],
   },
-  {
-    id: 5,
-    type: 'soon to be added',
-    name: 'SOON -',
-    github: 'https://github.com/salahamran/',
-    imageLight: '/projects/scraper.jpg',
-    imageDark: '/projects/scraper.jpg',
-    tags: ['Python', 'Django', 'API'],
-    workTime: '5 weeks',
-    role: 'Backend',
-    workFor: 'Yandex Practicum',
-    description:
-      'This project was made as a social media platform for people to publish and show their recipes and for the public to find recipes to cook.',
-    techIcons: ['/icons/django.svg', '/icons/github.svg', '/icons/docker.svg', '/icons/python.svg'],
-    screenshots: ['/projects/foodgram-recipe.png', '/projects/foodgram-register.png'],
-  },
+
 ];
 
 const moreProjects = [
@@ -111,12 +97,19 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [projects, setProjects] = useState(projectsData);
   const [showMore, setShowMore] = useState(false);
+  const [projects, setProjects] = useState(projectsData);
+  const [showMore, setShowMore] = useState(false);
 
   const handleShowMore = () => {
     setProjects([...projects, ...moreProjects]);
     setShowMore(true);
   };
+  const handleShowMore = () => {
+    setProjects([...projects, ...moreProjects]);
+    setShowMore(true);
+  };
   return (
+    
     
     <section
       id="projects"
@@ -132,7 +125,8 @@ export default function Projects() {
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="cursor-pointer bg-black-100 dark:bg-gray-800 p-4 rounded-2xl shadow-sm hover:shadow-md transition hover:scale-[1.02]"
+              className="cursor-pointer bg-black-100 dark:bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition hover:scale-[1.02]"
+              style={{ backgroundColor: 'var(--card-bg)', color: 'var(--text-primary)' }}
             >
               <div className="relative aspect-video rounded-xl overflow-hidden mb-4">
                 <Image
@@ -154,6 +148,15 @@ export default function Projects() {
           ))}
         </div>
       </div>
+              {!showMore && (
+          <button
+            onClick={handleShowMore}
+            className="mt-12 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-sm flex items-center gap-2 mx-auto"
+            style={{ backgroundColor: 'var(--accent-color)', color: 'var(--text-button)' }}
+          >
+            See more projects <span className="text-xl">↓</span>
+          </button>
+        )}
               {!showMore && (
           <button
             onClick={handleShowMore}
