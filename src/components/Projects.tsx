@@ -1,12 +1,11 @@
 'use client';
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import ProjectOverlay from './ProjectOverlay';
 import { Project } from '@/types/project';
 
 const projectsData: Project[] = [
-  
-  
   {
     id: 1,
     type: 'Search job API',
@@ -25,56 +24,31 @@ const projectsData: Project[] = [
   },
   {
     id: 2,
-    type: 'soon to be added',
-    name: 'SOON -',
+    type: 'Soon',
+    name: 'SOON —',
     github: 'https://github.com/salahamran/',
     imageLight: '/projects/scraper.jpg',
     imageDark: '/projects/scraper.jpg',
-    tags: ['Python', 'Django', 'API'],
-    workTime: '5 weeks',
-    role: 'Backend',
-    workFor: 'Yandex Practicum',
-    description:
-      'This project was made as a social media platform for people to publish and show their recipes and for the public to find recipes to cook.',
-    techIcons: ['/icons/django.svg', '/icons/github.svg', '/icons/docker.svg', '/icons/python.svg'],
-    screenshots: ['/projects/foodgram-recipe.png', '/projects/foodgram-register.png'],
   },
   {
     id: 3,
-    type: 'soon to be added',
-    name: 'SOON -',
+    type: 'Soon',
+    name: 'SOON —',
     github: 'https://github.com/salahamran/',
     imageLight: '/projects/scraper.jpg',
     imageDark: '/projects/scraper.jpg',
-    tags: ['Python', 'Django', 'API'],
-    workTime: '5 weeks',
-    role: 'Backend',
-    workFor: 'Yandex Practicum',
-    description:
-      'This project was made as a social media platform for people to publish and show their recipes and for the public to find recipes to cook.',
-    techIcons: ['/icons/django.svg', '/icons/github.svg', '/icons/docker.svg', '/icons/python.svg'],
-    screenshots: ['/projects/foodgram-recipe.png', '/projects/foodgram-register.png'],
   },
   {
     id: 4,
-    type: 'soon to be added',
-    name: 'SOON -',
+    type: 'Soon',
+    name: 'SOON —',
     github: 'https://github.com/salahamran/',
     imageLight: '/projects/scraper.jpg',
     imageDark: '/projects/scraper.jpg',
-    tags: ['Python', 'Django', 'API'],
-    workTime: '5 weeks',
-    role: 'Backend',
-    workFor: 'Yandex Practicum',
-    description:
-      'This project was made as a social media platform for people to publish and show their recipes and for the public to find recipes to cook.',
-    techIcons: ['/icons/django.svg', '/icons/github.svg', '/icons/docker.svg', '/icons/python.svg'],
-    screenshots: ['/projects/foodgram-recipe.png', '/projects/foodgram-register.png'],
   },
-
 ];
 
-const moreProjects = [
+const moreProjects: Project[] = [
   {
     id: 5,
     type: 'Web App',
@@ -95,80 +69,84 @@ const moreProjects = [
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [projects, setProjects] = useState(projectsData);
-  const [showMore, setShowMore] = useState(false);
-  const [projects, setProjects] = useState(projectsData);
+  const [projects, setProjects] = useState<Project[]>(projectsData);
   const [showMore, setShowMore] = useState(false);
 
   const handleShowMore = () => {
-    setProjects([...projects, ...moreProjects]);
+    setProjects((prev) => [...prev, ...moreProjects]);
     setShowMore(true);
   };
-  const handleShowMore = () => {
-    setProjects([...projects, ...moreProjects]);
-    setShowMore(true);
-  };
+
   return (
-    
-    
     <section
       id="projects"
       className="py-20 px-6"
-      style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)' }}
+      style={{
+        backgroundColor: 'var(--bg-color)',
+        color: 'var(--text-primary)',
+      }}
     >
       <div className="max-w-6xl mx-auto text-center">
         <p className="text-sm mb-2">My recent projects</p>
         <h2 className="text-4xl font-semibold mb-12">Selected work</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {projectsData.map((project) => (
+          {projects.map((project) => (
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="cursor-pointer bg-black-100 dark:bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition hover:scale-[1.02]"
-              style={{ backgroundColor: 'var(--card-bg)', color: 'var(--text-primary)' }}
+              className="cursor-pointer p-4 rounded-2xl shadow-sm transition hover:shadow-md hover:scale-[1.02]"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                color: 'var(--text-primary)',
+              }}
             >
               <div className="relative aspect-video rounded-xl overflow-hidden mb-4">
                 <Image
                   src={project.imageLight}
-                  alt={`${project.name} light`}
+                  alt={project.name}
                   fill
-                  style={{ objectFit: 'cover', display: 'var(--light-photo-display)' }}
+                  style={{
+                    objectFit: 'cover',
+                    display: 'var(--light-photo-display)',
+                  }}
                 />
                 <Image
                   src={project.imageDark}
-                  alt={`${project.name} dark`}
+                  alt={project.name}
                   fill
-                  style={{ objectFit: 'cover', display: 'var(--dark-photo-display)' }}
+                  style={{
+                    objectFit: 'cover',
+                    display: 'var(--dark-photo-display)',
+                  }}
                 />
               </div>
-              <p className="text-sm">{project.type}</p>
+
+              <p className="text-sm opacity-60">{project.type}</p>
               <h3 className="font-semibold">{project.name}</h3>
             </div>
           ))}
         </div>
+
+        {!showMore && (
+          <button
+            onClick={handleShowMore}
+            className="mt-12 px-6 py-3 rounded-full text-sm transition"
+            style={{
+              backgroundColor: 'var(--accent-color)',
+              color: 'var(--text-button)',
+            }}
+          >
+            See more projects ↓
+          </button>
+        )}
       </div>
-              {!showMore && (
-          <button
-            onClick={handleShowMore}
-            className="mt-12 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-sm flex items-center gap-2 mx-auto"
-            style={{ backgroundColor: 'var(--accent-color)', color: 'var(--text-button)' }}
-          >
-            See more projects <span className="text-xl">↓</span>
-          </button>
-        )}
-              {!showMore && (
-          <button
-            onClick={handleShowMore}
-            className="mt-12 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-sm flex items-center gap-2 mx-auto"
-            style={{ backgroundColor: 'var(--accent-color)', color: 'var(--text-button)' }}
-          >
-            See more projects <span className="text-xl">↓</span>
-          </button>
-        )}
 
       {selectedProject && (
-        <ProjectOverlay project={selectedProject} onClose={() => setSelectedProject(null)} />
+        <ProjectOverlay
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
       )}
     </section>
   );
